@@ -1,0 +1,33 @@
+### Login:
+- Tentar logar com cada um dos quatro usuários corretamente.
+- Tentar logar com dados em branco.
+- Tentar logar com caracteres em branco.
+- Tentar logar sem a senha.
+- Tentar logar com a senha em branco.
+
+### Home Page:
+- Verificar se todos os seis itens são listados corretamente.
+- Verificar se ao mudar a organização alfabética, o site lista em ordem de A a Z.
+- Verificar se ao mudar a organização alfabética, o site lista em ordem de Z a A.
+- Verificar se ao mudar a organização por tamanho, o site lista em ordem crescente.
+- Verificar se ao mudar a organização por tamanho, o site lista em ordem decrescente.
+- Verificar se ao clicar em "ADD to Cart" um item é adicionado ao carrinho.
+- Verificar se ao clicar em "Remove" um item é removido do carrinho.
+- Verificar se ao clicar em um item, o usuário é redirecionado para a página do item.
+
+### Item Page:
+- Verificar se ao adicionar o item no carrinho na pagina do item clicado, o botão "Remove" aparece.
+- Verificar se seguindo o fluxo: login - homepage e clicar item, ao clicar no botão "Back" na página do item, o usuário retorna para a home page.
+- Verificar se ao adicionar um item à partir da página do item, ele é marcado como adicionado ao carrinho, retornando a home page.
+
+### Checkout Page:
+- Verificar se é possível remover um item do carrinho e se ao voltar, o item aparece como removido.
+- Verificar se ao adicionar um item e clicar em "Checkout", o usuário é redirecionado para a página de checkout "Your Information".
+- Verificar se ao clicar em cancelar durante o preenchimento de "Your Information", o usuário retorna para "Your Cart".
+- Verificar se ao clicar em um item na página "Your Cart" durante o checkout, o usuário é redirecionado para a página do item.
+- Verificar se ao clicar no botão "Back" na página do item durante o checkout, o usuário retorna para "Your Cart".
+- Verificar se ao clicar em cancelar durante a etapa de "Overview" do checkout, o usuário retorna para a home page.
+- Tentar avançar com o campo "First Name" em branco.
+- Tentar avançar com o campo "Last Name" em branco.
+- Tentar avançar com o campo "Zip/Postal Code" em branco.
+- Tentar avançar com o campo "City" em branco.

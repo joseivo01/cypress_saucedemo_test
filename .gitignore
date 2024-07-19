@@ -1,0 +1,29 @@
+# Logs
+logs/
+node_modules/
+
+# Cypress
+cypress/fixtures/
+cypress/screenshots/
+cypress/videos/
+cypress/integration/_snapshots/
+cypress/integration/*.js.snap
+
+# Test output
+test-output/
+junit/
+
+# Coverage
+coverage/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Cypress cache
+.cypress/cache
