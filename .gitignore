@@ -3,7 +3,6 @@ logs/
 node_modules/
 
 # Cypress
-cypress/fixtures/
 cypress/screenshots/
 cypress/videos/
 cypress/integration/_snapshots/
