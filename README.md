@@ -1,9 +1,10 @@
 ```markdown
 # Technical Test Vox
 
-Este é um projeto de testes automatizados usando [Cypress](https://www.cypress.io/) 
-para validar os fluxos de login e compra de itens no site de 
+Este é um projeto de testes automatizados usando [Cypress](https://www.cypress.io/) para validar os fluxos de login e compra de itens no site de 
 exemplo [Sauce Demo](https://www.saucedemo.com/).
+
+Este projeto possue 2 branch, uma onde a solução é feita com PageObjects e outra sem PageObjects.
 
 ## Pré-requisitos
 
@@ -17,7 +18,6 @@ Antes de começar, certifique-se de ter o seguinte instalado em seu ambiente:
 Clone este repositório em sua máquina local e instale as dependências:
 
 ```
-bash
 git clone https://github.com/joseivo01/cypress_saucedemo_test.git
 cd technical-test-vox
 npm install
@@ -25,7 +25,7 @@ npm install
 
 ## Estrutura do Projeto
 
-A estrutura do projeto está organizada da seguinte maneira:
+A estrutura do projeto sem PageObjects está organizada da seguinte maneira:
 
 technical-test-vox/
 ├── cypress/
@@ -48,13 +48,40 @@ technical-test-vox/
 ├── cypress.config.js
 └── package.json
 
+A estrutura do projeto com PageObjects está organizada da seguinte maneira:
+
+technical-test-vox/
+├── cypress/
+│   ├── downloads/
+│   ├── e2e/
+│   │   ├── integration/
+│   │   │   ├── checkout.spec.cy.js
+│   │   │   ├── home.spec.cy.js
+│   │   │   ├── item.spec.cy.js
+│   │   │   ├── login.spec.cy.js
+│   │   ├── regression/
+│   │   │   └── buy_itens_flows.spec.cy.js
+│   ├── fixtures/
+│   │   └── user_of_page.js
+│   ├── page/
+│   │   └── checkout_page.js
+│   │   └── home_page.js
+│   │   └── item_page.js
+│   │   └── login_page.js
+│   ├── screenshots/
+│   ├── support/
+│   │   ├── commands.js
+│   │   ├── elements.js
+│   │   └── utils.js
+├── cypress.config.js
+└── package.json
 
 ## Configuração
 
 O arquivo `cypress.config.js` contém as configurações do Cypress, incluindo o `baseUrl` e outros parâmetros. Certifique-se de definir as variáveis de ambiente conforme necessário:
 
 ```
-javascript
+
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
@@ -66,8 +93,8 @@ module.exports = defineConfig({
     defaultCommandTimeout: 15000,
     baseUrl: 'https://www.saucedemo.com/v1',
     supportFile: 'cypress/support/commands.js',
-  },
-});
+    },
+  });
 ```
 
 ## Executando os Testes
@@ -75,16 +102,13 @@ module.exports = defineConfig({
 Para abrir a interface do Cypress, execute:
 
 ```
-bash
 npm run cypress:open
 ```
 
 Para rodar os testes em modo headless (sem interface gráfica), execute:
 
-```
-bash
+
 npm run cypress:run
-```
 
 Você também pode rodar os testes em diferentes resoluções de tela:
 
@@ -94,10 +118,8 @@ Você também pode rodar os testes em diferentes resoluções de tela:
 
 Para rodar todos os testes em todas as resoluções de tela:
 
-```
-bash
 npm run cypress:run:all
-```
+
 
 ## Comandos Personalizados
 
