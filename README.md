@@ -1,7 +1,9 @@
 ```markdown
 # Technical Test Vox
 
-Este é um projeto de testes automatizados usando [Cypress](https://www.cypress.io/) para validar os fluxos de login e compra de itens no site de exemplo [Sauce Demo](https://www.saucedemo.com/).
+Este é um projeto de testes automatizados usando [Cypress](https://www.cypress.io/) 
+para validar os fluxos de login e compra de itens no site de 
+exemplo [Sauce Demo](https://www.saucedemo.com/).
 
 ## Pré-requisitos
 
@@ -25,7 +27,6 @@ npm install
 
 A estrutura do projeto está organizada da seguinte maneira:
 
-```
 technical-test-vox/
 ├── cypress/
 │   ├── downloads/
@@ -36,17 +37,17 @@ technical-test-vox/
 │   │   │   ├── item.spec.cy.js
 │   │   │   ├── login.spec.cy.js
 │   │   ├── regression/
-│   │   │   ├── buy_itens_flows.spec.cy.js
+│   │   │   └── buy_itens_flows.spec.cy.js
 │   ├── fixtures/
-│   │   ├── user_of_page.js
+│   │   └── user_of_page.js
 │   ├── screenshots/
 │   ├── support/
 │   │   ├── commands.js
 │   │   ├── elements.js
-│   │   ├── utils.js
+│   │   └── utils.js
 ├── cypress.config.js
-├── package.json
-```
+└── package.json
+
 
 ## Configuração
 
@@ -72,13 +73,15 @@ module.exports = defineConfig({
 
 Para abrir a interface do Cypress, execute:
 
-```bash
+```
+bash
 npm run cypress:open
 ```
 
 Para rodar os testes em modo headless (sem interface gráfica), execute:
 
-```bash
+```
+bash
 npm run cypress:run
 ```
 
@@ -90,7 +93,8 @@ Você também pode rodar os testes em diferentes resoluções de tela:
 
 Para rodar todos os testes em todas as resoluções de tela:
 
-```bash
+```
+bash
 npm run cypress:run:all
 ```
 
