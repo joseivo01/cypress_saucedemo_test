@@ -53,7 +53,8 @@ technical-test-vox/
 
 O arquivo `cypress.config.js` contém as configurações do Cypress, incluindo o `baseUrl` e outros parâmetros. Certifique-se de definir as variáveis de ambiente conforme necessário:
 
-```javascript
+```
+javascript
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
