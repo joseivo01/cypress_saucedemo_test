@@ -15,7 +15,7 @@ Antes de começar, certifique-se de ter o seguinte instalado em seu ambiente:
 Clone este repositório em sua máquina local e instale as dependências:
 
 ```bash
-git clone <url-do-seu-repositorio>
+git clone https://github.com/joseivo01/cypress_saucedemo_test.git
 cd technical-test-vox
 npm install
 ```
