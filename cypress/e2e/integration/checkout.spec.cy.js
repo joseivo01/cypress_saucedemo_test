@@ -1,16 +1,18 @@
 const elements = require("../../support/elements")
 const users = require("../../fixtures/user_of_page")
 const utils = require("../../support/utils")
+const checkoutPage = require("../../pages/checkout_page")
+
+const checkout_page = new checkoutPage
 
 describe('Checkout Tests', () => {
   let first_name, last_name, postal_code;
 
   beforeEach(() => {
-    cy.login_page()
-    cy.login(users.standard.username, users.standard.password)
-    cy.add_to_cart("Sauce Labs Backpack")
-    cy.get(elements.my_cart_button).click()
-    cy.url().should('include', '/cart.html');
+    checkout_page.visit(users.standard.username, users.standard.password)
+    checkout_page.add_item_to_cart("Sauce Labs Backpack")
+    checkout_page.go_to_cart()
+    checkout_page.valid_url_is_correct('/cart.html');
 
     first_name = utils.generate_string('first_name');
     last_name = utils.generate_string('last_name');
@@ -18,81 +20,80 @@ describe('Checkout Tests', () => {
   });
 
   it('should remove item from cart and reflect changes when going back', () => {
-    cy.get(elements.cart_item_name("Sauce Labs Backpack")).should('be.visible')
-    cy.get(elements.cart_item_remove_button).click()
+    checkout_page.select_item_in_checkout("Sauce Labs Backpack")
+    checkout_page.remove_item_from_checkout("Sauce Labs Backpack")
     cy.get(elements.cart_item_name("Sauce Labs Backpack")).should('not.exist')
   });
 
   it('should redirect to "Your Information" page when clicking "Checkout"', () => {
-    cy.get(elements.checkout_button).should('be.visible').click()
+    checkout_page.checkout_button()
     cy.get(elements.header_infor_text).should('contain.text', 'Checkout: Your Information')
-    cy.url().should('include', '/checkout-step-one.html');
+    checkout_page.valid_url_is_correct('/checkout-step-one.html');
   });
 
   it('should return to "Your Cart" when canceling on "Your Information" page', () => {
-    cy.get(elements.checkout_button).should('be.visible').click()
+    checkout_page.checkout_button()
     cy.get(elements.header_infor_text).should('contain.text', 'Checkout: Your Information')
-    cy.get(elements.cancel_check_button).click()
-    cy.url().should('include', '/cart.html');
+    checkout_page.cancel_button_your_information()
+    checkout_page.valid_url_is_correct('/cart.html');
   });
 
   it('should redirect to item page when clicking on item during checkout', () => {
-    cy.get(elements.cart_item_name("Sauce Labs Backpack")).should('be.visible').click()
-    cy.url().should('include', '/inventory-item.html');
+    checkout_page.select_item_in_checkout("Sauce Labs Backpack").click()
+    checkout_page.valid_url_is_correct('/inventory-item.html');
   });
 
   it('should return to "Your Cart" when clicking "Back" on item page during checkout', () => {
-    cy.get(elements.cart_item_name("Sauce Labs Backpack")).should('be.visible').click()
-    cy.url().should('include', '/inventory-item.html');
+    checkout_page.select_item_in_checkout("Sauce Labs Backpack").click()
+    checkout_page.valid_url_is_correct('/inventory-item.html');
     cy.get(elements.back_button).should('be.visible').click({force:true})
-    cy.url().should('include', '/cart.html')
+    checkout_page.valid_url_is_correct('/cart.html')
   });
 
   it('should return to home page when canceling during checkout overview', () => {
-    cy.get(elements.cart_item_name("Sauce Labs Backpack")).should('be.visible')
-    cy.get(elements.checkout_button).should('be.visible').click()
-    cy.fill_checkout_information_fields(first_name, last_name, postal_code)
-    cy.get(elements.continue_check_button).click()
-    cy.url().should('include', '/checkout-step-two.html');
-    cy.get(elements.cancel_button).should('be.visible').click()
-    cy.url().should('include', '/inventory.html');    
+    checkout_page.checkout_button()
+    checkout_page.enter_first_name(first_name)
+    checkout_page.enter_last_name(last_name)
+    checkout_page.enter_postal_code(postal_code)
+    checkout_page.continue_button()
+    checkout_page.valid_url_is_correct('/checkout-step-two.html');
+    checkout_page.cancel_button_overview()
+    checkout_page.valid_url_is_correct('/inventory.html');    
   });
 
   it('should not advance with "First Name" field in blank', () => {
-    cy.get(elements.cart_item_name("Sauce Labs Backpack")).should('be.visible')
-    cy.get(elements.checkout_button).should('be.visible').click()
-    cy.get(elements.last_name_input).type(last_name)
-    cy.get(elements.postal_code_input).type(postal_code)
-    cy.get(elements.continue_check_button).click()
-    cy.get(elements.error_message).should('contain.text', 'Error: First Name is required')
+    checkout_page.checkout_button()
+    checkout_page.enter_last_name(last_name)
+    checkout_page.enter_postal_code(postal_code)
+    checkout_page.continue_button()
+    checkout_page.error_message('Error: First Name is required')
   });
 
   it('should not advance with "Last Name" field in blank', () => {
-    cy.get(elements.cart_item_name("Sauce Labs Backpack")).should('be.visible')
-    cy.get(elements.checkout_button).should('be.visible').click()
-    cy.get(elements.first_name_input).type(first_name)
-    cy.get(elements.postal_code_input).type(postal_code)
-    cy.get(elements.continue_check_button).click()
-    cy.get(elements.error_message).should('contain.text', 'Error: Last Name is required')
+    checkout_page.checkout_button()
+    checkout_page.enter_first_name(first_name)
+    checkout_page.enter_postal_code(postal_code)
+    checkout_page.continue_button()
+    checkout_page.error_message('Error: Last Name is required')
   });
 
   it('should not advance with "Zip/Postal Code" field in blank', () => {
-    cy.get(elements.cart_item_name("Sauce Labs Backpack")).should('be.visible')
-    cy.get(elements.checkout_button).should('be.visible').click()
-    cy.get(elements.first_name_input).type(first_name)
-    cy.get(elements.last_name_input).type(last_name)
-    cy.get(elements.continue_check_button).click()
-    cy.get(elements.error_message).should('contain.text', 'Error: Postal Code is required')
+    checkout_page.checkout_button()
+    checkout_page.enter_first_name(first_name)
+    checkout_page.enter_last_name(last_name)
+    checkout_page.continue_button()
+    checkout_page.error_message('Error: Postal Code is required')
   });
 
   it('should can finished a buy a item', () => {
-    cy.get(elements.cart_item_name("Sauce Labs Backpack")).should('be.visible')
-    cy.get(elements.checkout_button).should('be.visible').click()
-    cy.fill_checkout_information_fields(first_name, last_name, postal_code)
-    cy.get(elements.continue_check_button).should('be.visible').click()
-    cy.get(elements.finish_button).should('be.visible').click()
-    cy.get(elements.complete_message).should('be.visible')
-    cy.url().should('include', '/checkout-complete.html');
+    checkout_page.checkout_button()
+    checkout_page.enter_first_name(first_name)
+    checkout_page.enter_last_name(last_name)
+    checkout_page.enter_postal_code(postal_code)
+    checkout_page.continue_button()
+    checkout_page.finish_button()
+    checkout_page.complete_message()
+    checkout_page.valid_url_is_correct('/checkout-complete.html');
   });
 });
   

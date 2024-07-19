@@ -35,7 +35,7 @@ Cypress.Commands.add('login', (username, password) => {
     cy.get(elements.login_btn).click();
 });
 
-Cypress.Commands.add('ordenar_por', (filtro) => {
+Cypress.Commands.add('order_items_for', (filtro) => {
     cy.get(elements.order_select_button).select(filtro);
 });
 

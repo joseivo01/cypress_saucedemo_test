@@ -53,8 +53,8 @@ technical-test-vox/
 
 O arquivo `cypress.config.js` contém as configurações do Cypress, incluindo o `baseUrl` e outros parâmetros. Certifique-se de definir as variáveis de ambiente conforme necessário:
 
-```
-javascript
+```javascript
+
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
@@ -107,7 +107,6 @@ Os comandos personalizados estão definidos no arquivo `cypress/support/commands
 - `cy.login(username, password)` - Faz login com o usuário e senha fornecidos.
 - `cy.add_to_cart(item_name)` - Adiciona um item ao carrinho.
 - `cy.remove_from_cart(item_name)` - Remove um item do carrinho.
-- `cy.fill_checkout_information_fields(first_name, last_name, postal_code)` - Preenche os campos de informações de checkout.
 
 ## Estrutura dos Testes
 

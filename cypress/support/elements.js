@@ -42,7 +42,8 @@ module.exports = {
 
     // General checkout page:
     cart_item_name: (item_name) => { return `.cart_item > .cart_item_label > a > div:contains("${item_name}")`},
-    cart_item_remove_button: '.cart_item > .cart_item_label > .item_pricebar > .cart_button:contains("REMOVE")',
+    cart_item_remove_button: '.item_pricebar > .btn_secondary:first',
+    card_item_generic: 'div.cart_item',
 
     header_infor_text: 'div.subheader',
 
