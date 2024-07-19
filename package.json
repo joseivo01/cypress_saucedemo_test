@@ -13,6 +13,6 @@
     "cypress:run:all": "npm run cypress:run && npm run cypress:run:mobile && npm run cypress:run:tablet && npm run cypress:run:desktop"
   },
   "devDependencies": {
-    
+    "cypress": "^13.13.1"
   }
 }
